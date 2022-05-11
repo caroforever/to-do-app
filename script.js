@@ -75,6 +75,41 @@ formElement.addEventListener("submit", function(event) {
 
 //NEW PLAN: in order to attach a click event listener to the li's which do not exist on the page yet, we can use EVENT PROPAGATION TO DELEGATE the click event to the ul!
 // when something happens to the child element, the parents know about it. think about it like gossip in a nosy family.
+// EVENT PROPAGATION
+const ul = document.querySelector("ul");
+
+// the this keyword represents the object which owns the code which is currently running. what caused the callback function to run??? the ul is responsible for the callback function. we know it's the ul because if you console.log(this), you see ul in your console.
+
+
+
+ul.addEventListener("click", function(event){
+    //if you console.log(this), you will see <ul> in your console.
+    //so this will give us back the ul consistently which is not what we want
+    // console.log(this);
+
+        // log out the event object:
+    // console.log(event);
+    //as long as we've clicked on the icon, then we need to toggle between checked and unchecked.
+    // so the event object gives you info on what we are clicking on (we opened the click object in the console when we console.log(event))
+
+    // now we insert a condition!
+    if (event.target.localName === "i") {
+        console.log("checkbox was clicked!!!")
+
+            //toggle between unchecked / checked(aka done vs not done).
+            event.target.classList.toggle("fa-square-check");
+            event.target.classList.toggle("fa-square");
+    }
+});
+
+
+
+
+
+
+
+
+
 
 // PSEUDO CODE FOR WHAT WE WANT TO DO *_*_*_*_*_*_*_*_*_*_*_
 //add a submit event listener on the form
