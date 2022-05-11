@@ -2,6 +2,7 @@
 //first, we query the dom by targeting the form using .querySelector 
 //then, we put it into a variable called 'formElement'. this variable will be useful for the event listener.
 const formElement = document.querySelector("form");
+const clearButton = document.querySelector("button");
 
 //next step is to attach the variable to an event listener.
 // after that, pass the "submit" argument as a string.
@@ -97,14 +98,23 @@ ul.addEventListener("click", function(event){
         console.log("checkbox was clicked!!!")
 
             //toggle between unchecked / checked(aka done vs not done).
-            event.target.classList.toggle("fa-square-check");
+            
             event.target.classList.toggle("fa-square");
+            event.target.classList.toggle("fa-square-check");
+
+            //greying out the toggled
+            console.log(event.target.parentNode);
+            event.target.parentNode.classList.toggle("text-muted");
     }
 });
 
-
-
-
+// clear the checked items
+clearButton.addEventListener("click", function(event) {
+    const checkedItems = document.querySelectorAll(".text-muted");
+    for (let i = 0; i < checkedItems.length; i += 1) {
+        checkedItems[i].remove();
+    };
+});
 
 
 
